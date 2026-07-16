@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estúdio Alma — arquitetura</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg: #15140F;
+    --bg-2: #1C1A14;
+    --paper: #F4F1E8;
+    --paper-soft: #A69F8E;
+    --blue: #5E80D6;
+    --blue-soft: #8CA3E0;
+    --line: rgba(244,241,232,0.14);
+    --mx: 50%;
+    --my: 40%;
+
+    --display: 'Fraunces', serif;
+    --body: 'Manrope', sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--paper);
+    font-family: var(--body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; }
+  ::selection{ background: var(--blue); color: var(--bg); }
+
+  .wrap{ max-width: 1200px; margin:0 auto; padding: 0 32px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    padding: 26px 40px;
+    display:flex; align-items:center; justify-content:space-between;
+    mix-blend-mode: difference;
+  }
+  .logo{
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 20px;
+  }
+  .nav-links{ display:flex; gap: 30px; font-size: 13px; letter-spacing: 0.03em; }
+  @media (max-width: 760px){ .nav-links{ display:none; } }
+  .nav-index{ font-size: 12px; letter-spacing: 0.1em; }
+
+  /* ---------- HERO with blueprint grid + spotlight ---------- */
+  .hero{
+    position: relative;
+    min-height: 100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 120px 40px 80px;
+    overflow:hidden;
+  }
+  .grid-bg{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 44px 44px;
+    opacity: 0.5;
+  }
+  .spotlight{
+    position:absolute; inset:0;
+    background: radial-gradient(circle 420px at var(--mx) var(--my), rgba(94,128,214,0.28), transparent 70%);
+    pointer-events:none;
+    transition: background 0.05s linear;
+  }
+  .hero-inner{ position:relative; z-index:2; max-width: 980px; }
+  .hero-tag{
+    font-size: 12.5px; letter-spacing: 0.2em; text-transform:uppercase;
+    color: var(--blue-soft); margin-bottom: 30px;
+    display:flex; align-items:center; gap: 12px;
+  }
+  .hero-tag::before{ content:''; width:34px; height:1px; background: var(--blue-soft); }
+  h1{
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(38px, 6.4vw, 84px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    max-width: 900px;
+  }
+  h1 i{ font-style: italic; color: var(--blue-soft); }
+  .hero-sub{
+    margin-top: 30px;
+    font-size: 17px; color: var(--paper-soft);
+    max-width: 460px;
+  }
+  .hero-bottom{
+    position:relative; z-index:2;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-top: 64px; flex-wrap: wrap; gap: 24px;
+  }
+  .btn-line{
+    font-size: 14.5px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--paper);
+    transition: border-color .2s ease, color .2s ease;
+  }
+  .btn-line:hover{ border-color: var(--blue-soft); color: var(--blue-soft); }
+  .scroll-cue{
+    font-size: 11.5px; letter-spacing: 0.14em; text-transform:uppercase;
+    color: var(--paper-soft);
+    display:flex; align-items:center; gap: 10px;
+  }
+  .scroll-cue .bar{ width:1px; height: 34px; background: var(--paper-soft); position:relative; overflow:hidden; }
+  .scroll-cue .bar::after{
+    content:''; position:absolute; top:-100%; left:0; width:100%; height:100%;
+    background: var(--blue-soft);
+    animation: scrollbar 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollbar{ 0%{ top:-100%; } 100%{ top:100%; } }
+
+  /* ---------- HORIZONTAL PROJECT SCROLLER ---------- */
+  .gallery-section{ padding: 100px 0 60px; }
+  .gallery-head{
+    padding: 0 40px; margin-bottom: 40px;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap: 20px;
+  }
+  .section-tag{
+    font-size: 12px; letter-spacing: 0.18em; text-transform:uppercase;
+    color: var(--blue-soft); margin-bottom: 14px;
+  }
+  h2{
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(26px, 3.2vw, 38px);
+  }
+  .scroll-hint{ font-size: 13px; color: var(--paper-soft); }
+
+  .scroller{
+    display:flex; gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 40px 24px;
+    scrollbar-width: none;
+  }
+  .scroller::-webkit-scrollbar{ display:none; }
+  .panel{
+    flex: 0 0 min(560px, 82vw);
+    scroll-snap-align: start;
+  }
+  .panel-photo{ aspect-ratio: 4/5; overflow:hidden; margin-bottom: 22px; position:relative; }
+  .panel-photo img{ width:100%; height:100%; object-fit:cover; transition: transform .6s ease; }
+  .panel:hover .panel-photo img{ transform: scale(1.05); }
+  .panel-index{
+    font-family: var(--display); font-style:italic; color: var(--blue-soft);
+    font-size: 15px; margin-bottom: 10px; display:block;
+  }
+  .panel h3{ font-family: var(--display); font-weight: 500; font-size: 24px; margin-bottom: 12px; }
+  .panel p{ color: var(--paper-soft); font-size: 14.5px; max-width: 440px; margin-bottom: 16px; }
+  .panel-meta{ display:flex; gap: 22px; font-size: 12px; color: var(--paper-soft); }
+  .panel-meta b{ display:block; color: var(--paper); font-family: var(--display); font-size: 14px; font-weight:500; }
+
+  .progress-track{
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+    display:flex; align-items:center; gap: 16px;
+  }
+  .progress-bar{ flex:1; height:1px; background: var(--line); position:relative; }
+  .progress-fill{ position:absolute; left:0; top:0; height:1px; background: var(--blue-soft); width: 25%; transition: width .2s ease; }
+  .progress-count{ font-size: 12px; color: var(--paper-soft); font-variant-numeric: tabular-nums; }
+
+  /* ---------- PHILOSOPHY ---------- */
+  .philosophy{
+    max-width: 820px; margin: 0 auto; padding: 130px 40px;
+    text-align:center;
+  }
+  .philosophy p{
+    font-family: var(--display); font-style:italic; font-weight:400;
+    font-size: clamp(22px, 3vw, 34px); line-height:1.5;
+  }
+  .philosophy span{
+    display:block; margin-top: 28px; font-family: var(--body); font-style:normal;
+    font-size: 12.5px; color: var(--paper-soft); letter-spacing: 0.06em; text-transform:uppercase;
+  }
+
+  /* ---------- ABOUT — asymmetric ---------- */
+  .about-section{ padding: 40px 40px 140px; }
+  .about{
+    max-width: 1200px; margin: 0 auto;
+    display:grid; grid-template-columns: 0.8fr 1.2fr;
+    gap: 0;
+    align-items:stretch;
+  }
+  @media (max-width: 860px){ .about{ grid-template-columns: 1fr; } }
+  .about-photo{ position:relative; overflow:hidden; }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; min-height: 420px; }
+  .about-text{
+    background: var(--bg-2);
+    padding: 56px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  @media (max-width: 560px){ .about-text{ padding: 40px 28px; } }
+  .about-text p{ color: var(--paper-soft); font-size: 15px; margin-bottom: 18px; max-width: 460px; }
+  .about-signoff{ font-family: var(--display); font-style:italic; font-size: 20px; margin-top: 12px; color: var(--blue-soft); }
+
+  /* ---------- PROCESS ACCORDION ---------- */
+  .process-section{ padding: 0 40px 140px; }
+  .accordion{ max-width: 900px; margin: 0 auto; border-top: 1px solid var(--line); }
+  .acc-item{ border-bottom: 1px solid var(--line); }
+  .acc-head{
+    width:100%; background:none; border:none; color: var(--paper);
+    display:flex; align-items:center; gap: 24px;
+    padding: 28px 0; cursor:pointer;
+    font-family: var(--body); text-align:left;
+  }
+  .acc-num{ font-family: var(--display); font-style:italic; color: var(--blue-soft); font-size: 20px; width: 40px; flex-shrink:0; }
+  .acc-title{ font-family: var(--display); font-size: 20px; font-weight:400; flex:1; }
+  .acc-plus{ font-size: 20px; color: var(--paper-soft); transition: transform .25s ease; }
+  .acc-item.open .acc-plus{ transform: rotate(45deg); }
+  .acc-body{
+    max-height:0; overflow:hidden; transition: max-height .3s ease;
+  }
+  .acc-body-inner{ padding: 0 0 28px 64px; color: var(--paper-soft); font-size: 14.5px; max-width: 560px; }
+
+  /* ---------- TESTIMONIAL ---------- */
+  .testimonial{ max-width: 760px; margin: 0 auto; padding: 40px 40px 140px; text-align:center; }
+  .testimonial p{
+    font-family: var(--display); font-style:italic; font-weight:400;
+    font-size: clamp(20px, 2.4vw, 27px); line-height:1.5; margin-bottom: 24px;
+  }
+  .testimonial-author{ font-size: 13px; color: var(--paper-soft); }
+  .testimonial-author b{ color: var(--paper); font-family: var(--body); font-weight:600; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-section{
+    padding: 100px 40px 120px;
+    border-top: 1px solid var(--line);
+    text-align:center;
+  }
+  .contact-section .section-tag{ justify-content:center; display:flex; }
+  .contact-link{
+    font-family: var(--display); font-style:italic; font-weight:400;
+    font-size: clamp(28px, 5vw, 56px);
+    display:inline-block;
+    border-bottom: 2px solid var(--paper);
+    padding-bottom: 8px;
+    margin-top: 20px;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .contact-link:hover{ color: var(--blue-soft); border-color: var(--blue-soft); }
+  .contact-note{ margin-top: 26px; font-size: 13px; color: var(--paper-soft); }
+
+  footer{ padding: 32px 40px; border-top: 1px solid var(--line); }
+  .footer-inner{
+    max-width: 1200px; margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap: wrap; gap: 14px;
+    font-size: 12.5px; color: var(--paper-soft);
+  }
+
+  :focus-visible{ outline: 2px solid var(--blue-soft); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Estúdio Alma</div>
+  <div class="nav-links">
+    <a href="#projetos">Projetos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#processo">Processo</a>
+  </div>
+  <div class="nav-index">BH · 2026</div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="grid-bg"></div>
+  <div class="spotlight" id="spotlight"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">estúdio de arquitetura residencial</div>
+    <h1>Toda planta começa <i>antes</i> do papel.</h1>
+    <p class="hero-sub">Projetos autorais desenhados a partir da rotina real de cada família — luz, materiais e silêncio, nessa ordem.</p>
+  </div>
+  <div class="hero-bottom">
+    <a href="#contato" class="btn-line">Agende uma conversa →</a>
+    <div class="scroll-cue"><div class="bar"></div>role sobre o mouse / arraste para explorar</div>
+  </div>
+</section>
+
+<section class="gallery-section" id="projetos">
+  <div class="gallery-head">
+    <div>
+      <div class="section-tag">projetos selecionados</div>
+      <h2>Arraste para o lado e percorra os projetos.</h2>
+    </div>
+    <div class="scroll-hint">← arraste ou role horizontalmente →</div>
+  </div>
+
+  <div class="scroller" id="scroller">
+    <div class="panel">
+      <div class="panel-photo">
+        <img src="https://images.unsplash.com/photo-1627141234469-24711efb373c?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Casa moderna de concreto">
+      </div>
+      <span class="panel-index">01</span>
+      <h3>Residência Vidoeiro</h3>
+      <p>Organizada em torno de um pátio interno, pensada para receber luz da manhã sem perder privacidade da rua.</p>
+      <div class="panel-meta">
+        <div><b>320m²</b>área</div>
+        <div><b>8 meses</b>projeto</div>
+        <div><b>2025</b>conclusão</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-photo">
+        <img src="https://images.unsplash.com/photo-1762419757194-406cc4a13d73?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Pátio interno com escadas de concreto">
+      </div>
+      <span class="panel-index">02</span>
+      <h3>Pátio Cerrado</h3>
+      <p>Um vazio central que organiza a circulação e traz luz zenital para os ambientes mais internos da casa.</p>
+      <div class="panel-meta">
+        <div><b>280m²</b>área</div>
+        <div><b>6 meses</b>projeto</div>
+        <div><b>2024</b>conclusão</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-photo">
+        <img src="https://images.unsplash.com/photo-1750639258774-9a714379a093?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Sala de estar minimalista em tons neutros">
+      </div>
+      <span class="panel-index">03</span>
+      <h3>Apartamento Cerrado</h3>
+      <p>Reforma completa com paredes removidas e paleta neutra que valoriza os móveis de família da cliente.</p>
+      <div class="panel-meta">
+        <div><b>140m²</b>área</div>
+        <div><b>5 meses</b>projeto</div>
+        <div><b>2024</b>conclusão</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-photo">
+        <img src="https://images.unsplash.com/photo-1759238136854-a43787126db7?fm=jpg&q=80&w=900&auto=format&fit=crop" alt="Sala de estar com lareira">
+      </div>
+      <span class="panel-index">04</span>
+      <h3>Casa Riacho</h3>
+      <p>A lareira como centro da casa — o layout inteiro foi desenhado ao redor dela.</p>
+      <div class="panel-meta">
+        <div><b>210m²</b>área</div>
+        <div><b>7 meses</b>projeto</div>
+        <div><b>2023</b>conclusão</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-track">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-count" id="progressCount">01 / 04</div>
+  </div>
+</section>
+
+<div class="philosophy">
+  <p>"Arquitetura boa não se explica no render — se sente quando a luz da tarde entra do jeito certo, sem ninguém precisar acender uma lâmpada."</p>
+  <span>Marina Duarte, arquiteta responsável</span>
+</div>
+
+<section class="about-section" id="sobre">
+  <div class="about">
+    <div class="about-photo">
+      <img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Estudos e esboços de projeto arquitetônico">
+    </div>
+    <div class="about-text">
+      <div class="section-tag">sobre o estúdio</div>
+      <h2 style="margin-bottom:20px">Arquitetura que nasce da escuta antes de nascer do desenho.</h2>
+      <p>Sou Marina Duarte, arquiteta formada pela UFMG com especialização em arquitetura bioclimática. Fundei o Estúdio Alma em 2013 depois de perceber que os melhores projetos vinham das conversas mais simples com os clientes.</p>
+      <p>Hoje trabalho com um time pequeno para manter contato direto em cada etapa: do primeiro esboço até a última vistoria de obra.</p>
+      <div class="about-signoff">— Marina</div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section" id="processo">
+  <div class="gallery-head" style="max-width:900px; margin:0 auto 40px; padding:0;">
+    <div>
+      <div class="section-tag">como trabalhamos</div>
+      <h2>Do primeiro café à entrega das chaves.</h2>
+    </div>
+  </div>
+  <div class="accordion" id="accordion">
+    <div class="acc-item open">
+      <button class="acc-head" data-target="0">
+        <span class="acc-num">01</span>
+        <span class="acc-title">Escuta</span>
+        <span class="acc-plus">+</span>
+      </button>
+      <div class="acc-body" style="max-height:120px">
+        <div class="acc-body-inner">Visitamos o terreno ou o imóvel e conversamos sobre rotina, sonhos e restrições reais do orçamento.</div>
+      </div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-head" data-target="1">
+        <span class="acc-num">02</span>
+        <span class="acc-title">Conceito</span>
+        <span class="acc-plus">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">Apresentamos um estudo preliminar com volumetria, materiais e a lógica de luz e circulação.</div>
+      </div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-head" data-target="2">
+        <span class="acc-num">03</span>
+        <span class="acc-title">Projeto executivo</span>
+        <span class="acc-plus">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">Detalhamos tudo o que a obra precisa: estrutura, instalações, marcenaria e especificações.</div>
+      </div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-head" data-target="3">
+        <span class="acc-num">04</span>
+        <span class="acc-title">Acompanhamento</span>
+        <span class="acc-plus">+</span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">Visitamos a obra periodicamente para garantir que o que foi desenhado saia do papel fielmente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="testimonial">
+  <p>"A Marina entendeu antes de nós mesmos o que precisávamos. A casa parece ter sido desenhada por alguém que já morava com a gente."</p>
+  <p class="testimonial-author"><b>Camila e Rodrigo Aguiar</b> — Residência Vidoeiro</p>
+</div>
+
+<section class="contact-section" id="contato">
+  <div class="section-tag">vamos conversar?</div>
+  <a href="mailto:contato@estudioalma.com.br" class="contact-link">contato@estudioalma.com.br</a>
+  <div class="contact-note">As primeiras conversas são sem compromisso.</div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Estúdio Alma Arquitetura</span>
+    <span>Belo Horizonte, MG · Projeto conceitual de portfólio</span>
+  </div>
+</footer>
+
+<script>
+  // cursor spotlight on hero
+  const hero = document.getElementById('hero');
+  const spotlight = document.getElementById('spotlight');
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    hero.style.setProperty('--mx', x + '%');
+    hero.style.setProperty('--my', y + '%');
+  });
+
+  // horizontal scroller progress
+  const scroller = document.getElementById('scroller');
+  const progressFill = document.getElementById('progressFill');
+  const progressCount = document.getElementById('progressCount');
+  const totalPanels = scroller.children.length;
+
+  function updateProgress(){
+    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+    const pct = maxScroll > 0 ? (scroller.scrollLeft / maxScroll) : 0;
+    progressFill.style.width = Math.max(4, pct * 100) + '%';
+    const current = Math.min(totalPanels, Math.round(pct * (totalPanels - 1)) + 1);
+    progressCount.textContent = String(current).padStart(2,'0') + ' / ' + String(totalPanels).padStart(2,'0');
+  }
+  scroller.addEventListener('scroll', updateProgress, { passive:true });
+  updateProgress();
+
+  // accordion
+  const accItems = document.querySelectorAll('.acc-item');
+  accItems.forEach((item) => {
+    const head = item.querySelector('.acc-head');
+    const body = item.querySelector('.acc-body');
+    head.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      accItems.forEach((other) => {
+        other.classList.remove('open');
+        other.querySelector('.acc-body').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

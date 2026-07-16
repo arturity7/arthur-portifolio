@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocha Fina Marmoraria | Mármore e granito sob medida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#E8E5DD;
+    --bg-2:#DEDACE;
+    --panel:#FBFAF7;
+    --ink:#17140F;
+    --ink-soft:#6B6A62;
+    --line:rgba(23,20,15,.14);
+    --line-strong:rgba(23,20,15,.28);
+    --chalk:#1F4E8C;
+    --chalk-dark:#153A69;
+    --chalk-tint:#DCE6F2;
+    --whatsapp:#25D366;
+    --whatsapp-dark:#1DAF54;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+  h1,h2,h3{font-family:'Archivo',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px;}
+
+  /* Botões */
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-weight:700;font-size:14.5px;padding:15px 26px;border:none;cursor:pointer;transition:transform .15s ease;white-space:nowrap;letter-spacing:.01em;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-whats{background:var(--whatsapp);color:#fff;}
+  .btn-whats:hover{background:var(--whatsapp-dark);}
+  .btn-outline{background:transparent;border:1.5px solid var(--ink);color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--bg);}
+  .btn svg{width:18px;height:18px;flex-shrink:0;}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(232,229,221,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line-strong);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1200px;margin:0 auto;}
+  .logo{font-size:20px;font-weight:900;display:flex;align-items:center;gap:10px;color:var(--ink);letter-spacing:-.01em;text-transform:uppercase;}
+  .logo .tag{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11px;background:var(--ink);color:var(--bg);padding:3px 7px;letter-spacing:.03em;}
+  .nav-links{display:flex;gap:32px;align-items:center;}
+  .nav-links a{font-weight:600;font-size:13.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;}
+  .nav-links a:hover{color:var(--ink);}
+  @media (max-width:880px){.nav-links{display:none;}}
+
+  /* Ticker de materiais */
+  .ticker{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+  .ticker-track{display:inline-flex;gap:36px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding-left:32px;color:#C9C4B4;}
+  .ticker-track span{opacity:.9;}
+  .ticker-track b{color:var(--bg);}
+
+  /* Hero */
+  .hero{position:relative;padding:56px 0 34px;}
+  .hero-grid{display:grid;grid-template-columns:1fr .92fr;gap:52px;align-items:end;}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--chalk-dark);margin-bottom:22px;}
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--chalk);display:inline-block;}
+  .hero h1{font-size:52px;line-height:1.02;font-weight:900;color:var(--ink);margin-bottom:20px;letter-spacing:-.015em;text-transform:uppercase;}
+  .hero h1 .u{position:relative;white-space:nowrap;}
+  .hero h1 .u::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:11px;background:var(--chalk-tint);z-index:-1;}
+  .hero p.lead{font-size:17px;color:var(--ink-soft);max-width:440px;margin-bottom:30px;line-height:1.65;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px;}
+  .hero-specs{display:flex;gap:0;border-top:1px solid var(--line-strong);max-width:460px;}
+  .hero-specs div{flex:1;padding:12px 14px 0 0;border-right:1px solid var(--line-strong);}
+  .hero-specs div:last-child{border-right:none;}
+  .hero-specs strong{display:block;font-family:'Archivo',sans-serif;font-size:22px;font-weight:900;}
+  .hero-specs span{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;}
+
+  .hero-visual{position:relative;}
+  .hero-img-frame{position:relative;aspect-ratio:4/4.3;overflow:hidden;background:var(--ink);}
+  .hero-img-frame img{width:100%;height:100%;object-fit:cover;opacity:.92;}
+  .hero-img-frame::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(23,20,15,.55) 0%, rgba(23,20,15,0) 45%);z-index:1;}
+  .cutline{position:absolute;inset:0;z-index:2;pointer-events:none;}
+  .ref-tag{position:absolute;top:14px;left:14px;z-index:3;background:var(--panel);color:var(--ink);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:6px 10px;letter-spacing:.02em;}
+  .dim-tag{position:absolute;bottom:14px;left:14px;right:14px;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;color:#fff;}
+  .dim-tag .mat{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;}
+  .dim-tag .spec{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#D8D3C3;}
+  @media(max-width:940px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:36px;}
+    .hero-visual{max-width:380px;margin:0 auto;}
+  }
+
+  /* Trust bar */
+  .trust-bar{background:var(--bg-2);padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .trust-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .trust-item{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--ink-soft);}
+  .trust-item svg{width:18px;height:18px;color:var(--chalk);flex-shrink:0;}
+
+  /* Section heading */
+  .section{padding:88px 0;}
+  .section-head{max-width:600px;margin-bottom:48px;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:32px;font-weight:900;line-height:1.15;margin-bottom:10px;text-transform:uppercase;letter-spacing:-.01em;}
+  .section-head p{color:var(--ink-soft);font-size:15.5px;line-height:1.6;}
+
+  /* Serviços - lista técnica */
+  .service-list{border-top:1px solid var(--line-strong);}
+  .service-row{display:grid;grid-template-columns:70px 1fr 1.4fr auto;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line-strong);}
+  .service-row .num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--chalk-dark);}
+  .service-row h3{font-size:19px;font-weight:700;font-family:'Archivo',sans-serif;}
+  .service-row p{font-size:14px;color:var(--ink-soft);line-height:1.55;}
+  .service-row a{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--ink);border:1px solid var(--line-strong);padding:9px 14px;white-space:nowrap;display:inline-block;text-transform:uppercase;letter-spacing:.02em;transition:background .15s ease, color .15s ease;}
+  .service-row a:hover{background:var(--ink);color:var(--bg);}
+  @media(max-width:820px){
+    .service-row{grid-template-columns:1fr;gap:8px;padding:22px 0;}
+    .service-row a{justify-self:start;}
+  }
+
+  /* CTA banner */
+  .cta-banner{background:var(--ink);color:var(--bg);padding:56px;display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;}
+  .cta-banner::before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:repeating-linear-gradient(90deg,var(--chalk) 0 24px, transparent 24px 34px);}
+  .cta-text .eyebrow{color:#8FB4DC;}
+  .cta-text .eyebrow::before{background:#8FB4DC;}
+  .cta-text h2{font-size:27px;font-weight:900;color:#fff;max-width:480px;margin-bottom:10px;text-transform:uppercase;}
+  .cta-text p{color:#B9B4A5;font-size:14.5px;max-width:440px;}
+  @media(max-width:780px){.cta-banner{flex-direction:column;text-align:center;padding:44px 28px;}.cta-text p{margin:0 auto;}.cta-text .eyebrow{justify-content:center;}}
+
+  /* Stats */
+  .stats{padding:0 0 20px;}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);}
+  .stat{text-align:center;padding:36px 20px;border-right:1px solid var(--line-strong);}
+  .stat:last-child{border-right:none;}
+  .stat h3{font-size:40px;font-weight:900;color:var(--ink);font-family:'Archivo',sans-serif;}
+  .stat span{font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;display:block;margin-top:6px;}
+  @media(max-width:700px){.stats-grid{grid-template-columns:1fr;}.stat{border-right:none;border-bottom:1px solid var(--line-strong);}.stat:last-child{border-bottom:none;}}
+
+  /* Catálogo de materiais */
+  .catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-strong);}
+  .swatch{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--ink);}
+  .swatch img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .swatch:hover img{transform:scale(1.06);}
+  .swatch::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(23,20,15,.82) 0%, rgba(23,20,15,0) 55%);}
+  .swatch-tag{position:absolute;left:0;right:0;bottom:0;padding:16px;z-index:2;}
+  .swatch-tag .code{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8FB4DC;letter-spacing:.03em;}
+  .swatch-tag .name{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;color:#fff;}
+  @media(max-width:820px){.catalog-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* Depoimentos */
+  .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line-strong);}
+  .testi-card{padding:30px 26px 30px 0;border-right:1px solid var(--line-strong);}
+  .testi-card:last-child{border-right:none;padding-right:0;}
+  .testi-card:nth-child(2){padding-left:26px;}
+  .testi-card:nth-child(3){padding-left:26px;}
+  .stars{font-family:'IBM Plex Mono',monospace;color:var(--chalk-dark);font-size:12px;margin-bottom:14px;letter-spacing:.05em;}
+  .testi-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.65;margin-bottom:20px;}
+  .testi-user strong{font-size:14px;display:block;font-family:'Archivo',sans-serif;}
+  .testi-user span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;}
+  @media(max-width:900px){.testimonials-grid{grid-template-columns:1fr;}.testi-card{border-right:none;border-bottom:1px solid var(--line-strong);padding:26px 0 !important;}.testi-card:last-child{border-bottom:none;}}
+
+  /* Footer */
+  footer{background:var(--ink);color:#D8D3C3;padding:56px 0 24px;}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:40px;}
+  .footer-logo{font-family:'Archivo',sans-serif;font-size:19px;font-weight:900;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px;text-transform:uppercase;}
+  .footer-logo .tag{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11px;background:var(--chalk);color:#fff;padding:3px 7px;}
+  footer p{color:#9C9787;font-size:13.5px;line-height:1.6;max-width:280px;}
+  footer h4{font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:#D8D3C3;margin-bottom:16px;}
+  footer ul li{margin-bottom:10px;}
+  footer ul a{color:#9C9787;font-size:14px;}
+  footer ul a:hover{color:#8FB4DC;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#78735F;font-size:12.5px;font-family:'IBM Plex Mono',monospace;}
+  @media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;}}
+
+  /* Floating WhatsApp */
+  .float-whats{position:fixed;bottom:24px;right:24px;z-index:80;background:var(--whatsapp);color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(37,211,102,.45);animation:pulse 2.6s infinite;}
+  .float-whats svg{width:28px;height:28px;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+
+  @media(max-width:900px){.section{padding:56px 0;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#" class="logo">Rocha Fina <span class="tag">MG</span></a>
+    <nav class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#catalogo">Materiais</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-whats" href="https://wa.me/5531988880000?text=Oi!%20Quero%20um%20orçamento%20de%20mármore%2Fgranito." target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.4 1.3 4.88L2 22l5.35-1.4a9.9 9.9 0 0 0 4.69 1.19h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.18.83.85-3.1-.2-.32a8.22 8.22 0 1 1 6.99 3.92z"/></svg>
+      Pedir orçamento
+    </a>
+  </div>
+  <div class="ticker">
+    <div class="ticker-track">
+      <span><b>Branco Carrara</b> · 2cm/3cm</span>
+      <span><b>Preto Absoluto</b> · polido</span>
+      <span><b>Verde Guatemala</b> · levigado</span>
+      <span><b>Cinza Corumbá</b> · escovado</span>
+      <span><b>Quartzo Branco</b> · sob medida</span>
+      <span><b>Branco Carrara</b> · 2cm/3cm</span>
+      <span><b>Preto Absoluto</b> · polido</span>
+      <span><b>Verde Guatemala</b> · levigado</span>
+      <span><b>Cinza Corumbá</b> · escovado</span>
+      <span><b>Quartzo Branco</b> · sob medida</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Marmoraria em Belo Horizonte — Desde 2009</span>
+      <h1>Corte de mármore e<br>granito <span class="u">sob medida</span></h1>
+      <p class="lead">Do bloco à instalação, cada bancada, piso ou fachada sai da nossa oficina com a medida exata do seu projeto — sem retrabalho, sem imprevisto.</p>
+      <div class="hero-actions">
+        <a class="btn btn-whats" href="https://wa.me/5531988880000?text=Oi!%20Quero%20um%20orçamento%20de%20mármore%2Fgranito." target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.4 1.3 4.88L2 22l5.35-1.4a9.9 9.9 0 0 0 4.69 1.19h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.18.83.85-3.1-.2-.32a8.22 8.22 0 1 1 6.99 3.92z"/></svg>
+          Enviar medida no WhatsApp
+        </a>
+        <a class="btn btn-outline" href="#catalogo">Ver materiais</a>
+      </div>
+      <div class="hero-specs">
+        <div><strong>15+</strong><span>anos de ofício</span></div>
+        <div><strong>1.400+</strong><span>cortes entregues</span></div>
+        <div><strong>48h</strong><span>orçamento fechado</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-frame">
+        <img src="https://images.unsplash.com/photo-1682888813788-bf57c360123e?auto=format&fit=crop&w=900&q=80" alt="Cozinha com bancada de mármore instalada pela Rocha Fina">
+        <svg class="cutline" viewBox="0 0 400 430" preserveAspectRatio="none">
+          <line x1="20" y1="120" x2="380" y2="80" stroke="#1F4E8C" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+          <circle cx="20" cy="120" r="4" fill="#1F4E8C"/>
+          <circle cx="380" cy="80" r="4" fill="#1F4E8C"/>
+        </svg>
+        <div class="ref-tag">REF. RF-2026 · MB-01</div>
+        <div class="dim-tag">
+          <div>
+            <div class="mat">Mármore Carrara</div>
+            <div class="spec">2,40M × 0,62M · E 2CM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="wrap trust-row">
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 10h18"/></svg> Medição no local sem custo</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 5.5 5.5 5.5 0 0 1 21.5 12c-2.5 4.5-9.5 9-9.5 9z"/></svg> Garantia por escrito</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 1116 0 8 8 0 01-16 0z"/><path d="M12 8v4l3 2"/></svg> Instalação agendada</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Resposta rápida no WhatsApp</div>
+  </div>
+</div>
+
+<section class="section" id="servicos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Serviços</span>
+      <h2>Do projeto ao acabamento final</h2>
+      <p>Envie a medida ou a planta pelo WhatsApp e receba um orçamento detalhado, com opções de material e prazo.</p>
+    </div>
+    <div class="service-list">
+      <div class="service-row">
+        <div class="num mono">01</div>
+        <h3>Bancadas de cozinha</h3>
+        <p>Corte sob medida em mármore, granito ou quartzo, com furos para cuba e cooktop já inclusos no projeto.</p>
+        <a href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20de%20bancada%20de%20cozinha." target="_blank">Pedir orçamento</a>
+      </div>
+      <div class="service-row">
+        <div class="num mono">02</div>
+        <h3>Banheiros & lavabos</h3>
+        <p>Bancadas, soleiras e revestimentos que resistem à umidade sem perder o brilho ao longo dos anos.</p>
+        <a href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20para%20banheiro." target="_blank">Pedir orçamento</a>
+      </div>
+      <div class="service-row">
+        <div class="num mono">03</div>
+        <h3>Fachadas e pisos</h3>
+        <p>Revestimento externo e interno com placas de grande formato, niveladas e seladas para durar décadas.</p>
+        <a href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20de%20fachada%2Fpiso." target="_blank">Pedir orçamento</a>
+      </div>
+      <div class="service-row">
+        <div class="num mono">04</div>
+        <h3>Escadas e soleiras</h3>
+        <p>Degraus e soleiras cortados com precisão milimétrica, respeitando cada medida do seu ambiente.</p>
+        <a href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20de%20escada%2Fsoleira." target="_blank">Pedir orçamento</a>
+      </div>
+      <div class="service-row">
+        <div class="num mono">05</div>
+        <h3>Mesas e balcões</h3>
+        <p>Peças exclusivas para mesas, ilhas e balcões comerciais, com veios selecionados a dedo no bloco.</p>
+        <a href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20de%20mesa%2Fbalcão." target="_blank">Pedir orçamento</a>
+      </div>
+      <div class="service-row">
+        <div class="num mono">06</div>
+        <h3>Restauração de mármore</h3>
+        <p>Polimento e cristalização para devolver o brilho original de bancadas e pisos já desgastados.</p>
+        <a href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20de%20restauração." target="_blank">Pedir orçamento</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="cta-banner">
+      <div class="cta-text">
+        <span class="eyebrow">Orçamento rápido</span>
+        <h2>Manda a medida e já recebe o orçamento</h2>
+        <p>Fale agora com a nossa equipe pelo WhatsApp e receba uma resposta ainda hoje, com opções de material e prazo.</p>
+      </div>
+      <a class="btn btn-whats" href="https://wa.me/5531988880000?text=Oi!%20Quero%20um%20orçamento%20de%20mármore%2Fgranito." target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.4 1.3 4.88L2 22l5.35-1.4a9.9 9.9 0 0 0 4.69 1.19h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.18.83.85-3.1-.2-.32a8.22 8.22 0 1 1 6.99 3.92z"/></svg>
+        Chamar no WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat"><h3>15+</h3><span>Anos cortando pedra</span></div>
+      <div class="stat"><h3>1.400+</h3><span>Projetos entregues</span></div>
+      <div class="stat"><h3>4,9/5</h3><span>Avaliação dos clientes</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="catalogo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Catálogo</span>
+      <h2>Materiais que trabalhamos</h2>
+      <p>Uma amostra dos veios que já saíram da nossa oficina. Toque em qualquer material para pedir esse mesmo acabamento.</p>
+    </div>
+    <div class="catalog-grid">
+      <a class="swatch" href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20em%20Mármore%20Carrara." target="_blank">
+        <img src="https://images.unsplash.com/photo-1566041510394-cf7c8fe21800?auto=format&fit=crop&w=700&q=80" alt="Mármore branco Carrara">
+        <div class="swatch-tag"><div class="code mono">MB-01</div><div class="name">Mármore Carrara</div></div>
+      </a>
+      <a class="swatch" href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20em%20Granito%20Preto%20Absoluto." target="_blank">
+        <img src="https://images.unsplash.com/photo-1699982758974-0703b87f052d?auto=format&fit=crop&w=700&q=80" alt="Granito preto absoluto">
+        <div class="swatch-tag"><div class="code mono">GR-04</div><div class="name">Preto Absoluto</div></div>
+      </a>
+      <a class="swatch" href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20em%20Mármore%20Verde%20Guatemala." target="_blank">
+        <img src="https://images.unsplash.com/photo-1532644440111-bc94f97955c1?auto=format&fit=crop&w=700&q=80" alt="Mármore verde Guatemala">
+        <div class="swatch-tag"><div class="code mono">MB-07</div><div class="name">Verde Guatemala</div></div>
+      </a>
+      <a class="swatch" href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20de%20bancada%20instalada." target="_blank">
+        <img src="https://images.unsplash.com/photo-1722605090433-41d1183a792d?auto=format&fit=crop&w=700&q=80" alt="Cozinha com bancada de mármore instalada">
+        <div class="swatch-tag"><div class="code mono">PJ-12</div><div class="name">Cozinha completa</div></div>
+      </a>
+      <a class="swatch" href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20de%20banheiro%20com%20mármore." target="_blank">
+        <img src="https://images.unsplash.com/photo-1754788358645-d6e6cca12e25?auto=format&fit=crop&w=700&q=80" alt="Banheiro com bancada de mármore">
+        <div class="swatch-tag"><div class="code mono">PJ-08</div><div class="name">Bancada de banheiro</div></div>
+      </a>
+      <a class="swatch" href="https://wa.me/5531988880000?text=Oi!%20Quero%20orçamento%20de%20ilha%20de%20cozinha%20em%20mármore." target="_blank">
+        <img src="https://images.unsplash.com/photo-1709747820806-057272eddd5d?auto=format&fit=crop&w=700&q=80" alt="Ilha de cozinha em mármore escuro">
+        <div class="swatch-tag"><div class="code mono">PJ-15</div><div class="name">Ilha em mármore</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="depoimentos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>Quem contratou, recomenda</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Mandei a planta da cozinha pelo WhatsApp e em dois dias já tinha o orçamento fechado. A instalação foi limpa e no prazo combinado."</p>
+        <div class="testi-user"><strong>Marina Prado</strong><span>Bancada de cozinha</span></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Refizeram o piso da varanda com granito e o acabamento ficou impecável. Equipe pontual e sem sujeira no final da obra."</p>
+        <div class="testi-user"><strong>Rodrigo Castro</strong><span>Piso e revestimento</span></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Fizeram a restauração do mármore da sala, que estava opaco há anos. Voltou a brilhar como novo, recomendo demais."</p>
+        <div class="testi-user"><strong>Tânia Alves</strong><span>Restauração de mármore</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Rocha Fina <span class="tag">MG</span></div>
+        <p>Marmoraria em Belo Horizonte trabalhando mármore, granito e quartzo sob medida desde 2009.</p>
+      </div>
+      <div>
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">Bancadas de cozinha</a></li>
+          <li><a href="#servicos">Banheiros & lavabos</a></li>
+          <li><a href="#servicos">Fachadas e pisos</a></li>
+          <li><a href="#servicos">Restauração</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="#catalogo">Materiais</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Fale com a gente</h4>
+        <p>Av. das Cantarias, 780 — Distrito Industrial, Belo Horizonte/MG</p>
+        <p style="margin-top:8px;">Seg a Sex · 8h às 18h — Sáb · 8h às 12h</p>
+        <a class="btn btn-whats" style="margin-top:16px;" href="https://wa.me/5531988880000?text=Oi!%20Quero%20um%20orçamento%20de%20mármore%2Fgranito." target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.4 1.3 4.88L2 22l5.35-1.4a9.9 9.9 0 0 0 4.69 1.19h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.18.83.85-3.1-.2-.32a8.22 8.22 0 1 1 6.99 3.92z"/></svg>
+          (31) 98888-0000
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ROCHA FINA MARMORARIA — TODOS OS DIREITOS RESERVADOS</span>
+      <span>PEDRA TRABALHADA COM TÉCNICA</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-whats" href="https://wa.me/5531988880000?text=Oi!%20Quero%20um%20orçamento%20de%20mármore%2Fgranito." target="_blank" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.4 1.3 4.88L2 22l5.35-1.4a9.9 9.9 0 0 0 4.69 1.19h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.18.83.85-3.1-.2-.32a8.22 8.22 0 1 1 6.99 3.92z"/></svg>
+</a>
+
+</body>
+</html>
