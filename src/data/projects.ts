@@ -7,8 +7,8 @@ export type Project = {
   date: string;
   description: Localized;
   stack: string[];
-  /* link do repositório (opcional); sem ele, o botão não aparece */
-  repo?: string;
+  /* link do repositório no GitHub (exigido pela atividade) */
+  repo: string;
   /* GIF do projeto rodando, em /public/projects (null → aviso de "em breve") */
   gif: string | null;
   /* miniatura do anel (opcional); sem ela, o próprio GIF roda no anel */

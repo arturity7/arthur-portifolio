@@ -3,7 +3,7 @@
 # 🏷️ Portfólio — Arthur Gabriel 👨‍💻
 
 > [!NOTE]
-> Portfólio profissional bilíngue (português/inglês) com os projetos girando num anel no centro da tela. Cada projeto abre com um GIF de demonstração, descrição, tecnologias e uma linha do tempo do mais antigo ao mais recente.
+> Portfólio profissional bilíngue (português/inglês) com os projetos girando num anel no centro da tela. Cada projeto abre com um GIF de demonstração, descrição, tecnologias, link do repositório e uma linha do tempo do mais antigo ao mais recente.
 
 <table>
   <tr>
@@ -74,7 +74,7 @@ O objetivo é apresentar minha trajetória, habilidades, projetos e formas de co
 ## ✨ Funcionalidades Principais
 
 - 🌀 **Anel de projetos:** os projetos giram no centro da tela; hover destaca o projeto e mostra índice, nome e ano. No celular, o 1º toque seleciona e o 2º abre.
-- 🎞️ **Projeto aberto:** GIF do projeto em funcionamento, descrição e tecnologias utilizadas.
+- 🎞️ **Projeto aberto:** GIF do projeto em funcionamento, descrição, tecnologias e link para o repositório no GitHub.
 - 🕰️ **Linha do tempo:** dentro do projeto aberto, todos os projetos aparecem do mais antigo ao mais recente, com navegação por clique, botões ou setas do teclado.
 - 👤 **Sobre mim:** apresentação com formação, área de atuação, interesses e objetivos.
 - 💼 **Experiências:** registro em colunas com período, empresa/instituição, cargo e descrição; item atual marcado.
@@ -284,6 +284,7 @@ npm run lint
   date: "2025-06",                       // define a posição na linha do tempo
   description: { pt: "…", en: "…" },
   stack: ["Java", "Spring Boot"],
+  repo: "https://github.com/arturity7/meu-projeto",
   gif: "/projects/meu-projeto.gif",
 }
 ```
