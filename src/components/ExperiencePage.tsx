@@ -17,7 +17,9 @@ export default function ExperiencePage() {
       month: "short",
       year: "numeric",
       timeZone: "UTC",
-    }).format(new Date(Date.UTC(y, m - 1, 1)));
+    })
+      .format(new Date(Date.UTC(y, m - 1, 1)))
+      .replace(" de ", " ");
   };
 
   return (
@@ -36,8 +38,10 @@ export default function ExperiencePage() {
       </div>
 
       <ol className="xp-list">
-        {EXPERIENCES.map((e) => (
-          <li key={e.org + e.start} className="xp-item">
+        {EXPERIENCES.map((e) => {
+          const org = typeof e.org === "string" ? e.org : tr(e.org);
+          return (
+          <li key={org + e.start} className="xp-item">
             <div className="xp-when">
               <span>
                 {month(e.start)} — {e.end ? month(e.end) : x.now}
@@ -45,7 +49,7 @@ export default function ExperiencePage() {
               {!e.end && <span className="xp-live" aria-hidden="true" />}
             </div>
             <div className="xp-where">
-              <h2>{e.link ? <a href={e.link} target="_blank" rel="noopener noreferrer">{e.org}</a> : e.org}</h2>
+              <h2>{e.link ? <a href={e.link} target="_blank" rel="noopener noreferrer">{org}</a> : org}</h2>
               <span className="xp-kind">{x.kinds[e.kind]}</span>
             </div>
             <div className="xp-what">
@@ -53,7 +57,8 @@ export default function ExperiencePage() {
               <p>{tr(e.description)}</p>
             </div>
           </li>
-        ))}
+          );
+        })}
       </ol>
 
       <PageFoot />

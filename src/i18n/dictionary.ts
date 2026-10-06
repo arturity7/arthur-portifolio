@@ -59,6 +59,8 @@ const pt = {
       opensource: "Open source",
       event: "Evento",
       academic: "Acadêmico",
+      venture: "Empreendimento",
+      nonprofit: "Terceiro setor",
     },
   },
   contact: {
@@ -153,6 +155,8 @@ const en: Dict = {
       opensource: "Open source",
       event: "Event",
       academic: "Academic",
+      venture: "Venture",
+      nonprofit: "Nonprofit",
     },
   },
   contact: {

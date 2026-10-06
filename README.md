@@ -54,8 +54,6 @@
 ## 🔗 Links Úteis
 * 🌐 **Demo Online:** [Acesse o portfólio](<link-da-vercel>)
   > 💻 **Descrição:** site publicado na Vercel (build de produção do Next.js).
-* 🎨 **Protótipos (Figma):** [Wireframes de média fidelidade](<link-do-figma>)
-  > 📐 **Descrição:** wireframes das quatro seções, usados como base do layout.
 
 ---
 
@@ -172,7 +170,7 @@ Copie `.env.example` para `.env.local` na raiz do projeto e preencha:
 | Variável | Descrição | Exemplo |
 | :--- | :--- | :--- |
 | `RESEND_API_KEY` | Chave da API do Resend | `re_xxxxxxxx` |
-| `CONTACT_TO_EMAIL` | E-mail que recebe as mensagens do formulário | `voce@exemplo.com` |
+| `CONTACT_TO_EMAIL` | E-mail que recebe as mensagens do formulário | `gabrielarthur730@gmail.com` |
 | `CONTACT_FROM_EMAIL` | *(opcional)* Remetente. Sem domínio verificado, use o padrão do Resend | `Portfólio <onboarding@resend.dev>` |
 
 > [!IMPORTANT]
@@ -236,8 +234,7 @@ npm run lint
 ├── vercel.json                # ☁️ Configuração do deploy
 │
 ├── /docs
-│   ├── /screens               # 🖼️ Capturas de tela usadas neste README
-│   └── /wireframes            # 📐 Exportações dos wireframes do Figma
+│   └── /screens               # 🖼️ Capturas de tela usadas neste README
 │
 ├── /public
 │   ├── /img                   # 🖼️ Foto do "Sobre mim"
@@ -298,14 +295,6 @@ npm run lint
 
 ## 🎥 Demonstração
 
-### 📐 Wireframes (Figma)
-
-| Projetos | Projeto aberto |
-| :---: | :---: |
-| <img src="docs/wireframes/projetos.png" alt="Wireframe — Projetos" width="380"> | <img src="docs/wireframes/projeto.png" alt="Wireframe — Projeto aberto" width="380"> |
-| **Sobre mim** | **Contato** |
-| <img src="docs/wireframes/sobre.png" alt="Wireframe — Sobre" width="380"> | <img src="docs/wireframes/contato.png" alt="Wireframe — Contato" width="380"> |
-
 ### 🌐 Aplicação Web
 
 | Tela | Captura de Tela |
@@ -360,9 +349,9 @@ Os fluxos (anel, abertura de projeto, linha do tempo, troca de idioma, validaç�
 
 ## 👥 Autores
 
-| 👤 Nome | :octocat: GitHub | 💼 LinkedIn |
-|---------|-----------------|-------------|
-| Arthur Gabriel | <div align="center"><a href="https://github.com/arturity7"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="https://www.linkedin.com/in/arthur-gabriel-45316128b/"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> |
+| 👤 Nome | :octocat: GitHub | 💼 LinkedIn | 📤 Gmail |
+|---------|-----------------|-------------|-----------|
+| Arthur Gabriel | <div align="center"><a href="https://github.com/arturity7"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="https://www.linkedin.com/in/arthur-gabriel-45316128b/"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> | <div align="center"><a href="mailto:gabrielarthur730@gmail.com"><img src="https://joaopauloaramuni.github.io/image/gmail3.png" width="50px" height="50px"></a></div> |
 
 ---
 

@@ -1,6 +1,6 @@
 export const PROFILE = {
   name: "Arthur Gabriel",
-  email: "contato@arthur.design", // TODO: confirmar o e-mail público
+  email: "gabrielarthur730@gmail.com",
   whatsapp: {
     display: "+55 31 98499-6098",
     url: "https://wa.me/5531984996098",
