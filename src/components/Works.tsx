@@ -110,9 +110,11 @@ export default function Works({ projects, running, onOpen }: Props) {
 
       const W = innerWidth, H = innerHeight;
       const narrow = W < 680, portrait = H > W;
-      const RX = narrow ? W * 0.3 : Math.min(W * 0.2, 272);
-      const RY = narrow ? (portrait ? H * 0.235 : H * 0.26) : Math.min(H * 0.27, 172);
-      const BASE = narrow ? W * 0.46 : Math.min(W, H) * 0.3;
+      /* raio um pouco maior e quadros um pouco menores: respiro entre os projetos */
+      const tablet = !narrow && portrait; // tablet em pé: anel mais alto que largo
+      const RX = narrow ? W * 0.31 : tablet ? W * 0.27 : Math.min(W * 0.22, 320);
+      const RY = narrow ? (portrait ? H * 0.25 : H * 0.27) : tablet ? Math.min(H * 0.24, 260) : Math.min(H * 0.29, 200);
+      const BASE = narrow ? W * 0.44 : tablet ? W * 0.3 : Math.min(W, H) * 0.29;
 
       state.forEach((st, i) => {
         const el = tileRefs.current[i];
