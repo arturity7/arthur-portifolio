@@ -1,0 +1,102 @@
+/* ============================================================
+   SOBRE — nome em serifa, foto e uma ficha
+   ============================================================ */
+.ab-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(60px, 15vw, 214px);
+  line-height: 0.86;
+  letter-spacing: 0.005em;
+  display: flex;
+  flex-direction: column;
+  margin: clamp(28px, 5vh, 56px) 0 clamp(36px, 7vh, 84px);
+  user-select: none;
+}
+.ab-name-2 {
+  align-self: flex-end;
+}
+
+.ab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 6vw, 100px);
+  align-items: start;
+}
+
+.ab-photo {
+  position: sticky;
+  top: 84px;
+}
+.ab-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 38%;
+  filter: grayscale(1) contrast(1.06);
+}
+.ab-photo figcaption {
+  margin-top: 10px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.ab-text {
+  max-width: 640px;
+}
+.ab-lead {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 31px);
+  line-height: 1.32;
+  color: var(--ink);
+  margin-bottom: clamp(24px, 4vh, 36px);
+}
+.ab-text > p:not(.ab-lead) {
+  font-size: clamp(15px, 1.25vw, 16.5px);
+  line-height: 1.75;
+  color: var(--body);
+}
+.ab-text > p:not(.ab-lead) + p {
+  margin-top: 1em;
+}
+
+.ab-facts {
+  margin-top: clamp(40px, 7vh, 64px);
+  border-top: 1px solid var(--ink);
+}
+.ab-facts div {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.ab-facts dt {
+  font-size: var(--small);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ab-facts dd {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@media (max-width: 760px) {
+  .ab-grid {
+    grid-template-columns: 1fr;
+  }
+  .ab-photo {
+    position: static;
+    max-width: 420px;
+  }
+  .ab-facts div {
+    grid-template-columns: 100px 1fr;
+  }
+}

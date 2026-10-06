@@ -1,0 +1,37 @@
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 100;
+  transition: opacity 0.5s ease;
+}
+#loader.off {
+  opacity: 0;
+  pointer-events: none;
+}
+#loader canvas {
+  position: absolute;
+  inset: 0;
+}
+#lmark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(38px, 4vw, 46px);
+  height: auto;
+  aspect-ratio: 100 / 60;
+  transform: translate(-50%, -50%);
+  color: var(--white);
+}
+#pct {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}

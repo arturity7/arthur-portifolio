@@ -1,0 +1,100 @@
+/* ============================================================
+   EXPERIÊNCIAS — um registro em colunas, como um livro-caixa
+   ============================================================ */
+.xp-cols,
+.xp-item {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(20px, 3.5vw, 48px);
+}
+.xp-cols {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ink);
+  font-size: var(--small);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.xp-list {
+  list-style: none;
+}
+.xp-item {
+  padding: clamp(24px, 4vh, 36px) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.xp-when {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--body);
+  padding-top: 0.5em;
+}
+/* ponto pulsando = em andamento */
+.xp-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pen);
+  animation: xp-pulse 2.4s ease-in-out infinite;
+}
+@keyframes xp-pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.xp-where h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1;
+}
+.xp-where a:hover {
+  color: var(--pen);
+}
+.xp-kind {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.xp-role {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-top: 0.55em;
+}
+.xp-what p:not(.xp-role) {
+  font-size: clamp(15px, 1.25vw, 16px);
+  line-height: 1.7;
+  color: var(--body);
+}
+
+@media (max-width: 760px) {
+  .xp-cols {
+    display: none;
+  }
+  .xp-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .xp-item:first-child {
+    border-top: 1px solid var(--ink);
+  }
+  .xp-when {
+    padding-top: 0;
+  }
+}

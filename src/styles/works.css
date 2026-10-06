@@ -1,0 +1,119 @@
+/* ============================================================
+   PALCO — o anel de projetos girando no meio da tela
+   ============================================================ */
+#stage {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  transition: transform 1s var(--ease), filter 1s var(--ease), opacity 0.55s ease;
+  transform-origin: 50% 50%;
+}
+.app.stage-hidden #stage {
+  opacity: 0;
+}
+.app[class*="view-"] #stage {
+  display: none;
+}
+
+#ring {
+  position: absolute;
+  inset: 0;
+}
+.tile {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  will-change: transform, opacity, filter;
+  opacity: 0;
+  transition: filter 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tile.soon {
+  cursor: default;
+}
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  outline: 1px solid rgba(255, 255, 255, 0.05);
+  outline-offset: -1px;
+}
+.tile:focus-visible {
+  outline: 1px solid var(--white);
+  outline-offset: 4px;
+}
+/* hover: o escolhido cresce (via JS), o resto perde cor e foco */
+#ring.hovered .tile:not(.hot) {
+  filter: grayscale(1) brightness(0.32) blur(1.6px);
+}
+.tile.hot {
+  z-index: 45 !important;
+}
+
+#mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(38px, 4vw, 46px);
+  height: auto;
+  aspect-ratio: 100 / 60;
+  transform: translate(-50%, -50%);
+  color: var(--white);
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.app.ready #mark {
+  opacity: 1;
+}
+
+/* HUD: índice, título e ano do projeto em foco */
+.hud {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 60;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 var(--gut) clamp(16px, 2.8vh, 24px);
+  color: var(--white);
+  font-size: var(--small);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 0.9s ease 0.4s;
+}
+.app.ready .hud {
+  opacity: 1;
+}
+.app.stage-hidden .hud,
+.app[class*="view-"] .hud {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.hud span {
+  opacity: 0;
+  transition: opacity 0.35s;
+  min-width: 52px;
+}
+.hud .title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.hud .year {
+  text-align: right;
+}
+.hud.show span {
+  opacity: 1;
+}
