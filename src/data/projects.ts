@@ -16,17 +16,7 @@ export type Project = {
 };
 
 const projects: Project[] = [
-  {
-    slug: "portfolio",
-    title: "Portfólio",
-    date: "2026-10",
-    description: {
-      pt: "Este site. Um portfólio em Next.js com os projetos girando num anel, páginas em português e inglês trocadas sem recarregar e um formulário de contato que envia e-mail por uma rota de API própria.",
-      en: "This website. A Next.js portfolio with projects spinning in a ring, pages in Portuguese and English switched without reloading, and a contact form that sends e-mail through its own API route.",
-    },
-    stack: ["Next.js", "TypeScript", "React", "CSS", "Resend", "Vercel"],
-    gif: null,
-  },
+  // os projetos entram aqui (ver "Como adicionar projetos" no README)
 ];
 
 /* sempre em ordem cronológica */
