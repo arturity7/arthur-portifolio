@@ -60,11 +60,13 @@ const ProjectView = forwardRef<HTMLDivElement, Props>(function ProjectView(
                     <li key={s}>{s}</li>
                   ))}
                 </ul>
-                <a className="pv-repo" href={p.repo} target="_blank" rel="noopener noreferrer">
-                  <FaGithub aria-hidden="true" />
-                  <span>{t.project.repo}</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
+                {p.repo && (
+                  <a className="pv-repo" href={p.repo} target="_blank" rel="noopener noreferrer">
+                    <FaGithub aria-hidden="true" />
+                    <span>{t.project.repo}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                )}
               </div>
             </div>
           </article>

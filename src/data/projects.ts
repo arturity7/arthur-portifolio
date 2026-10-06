@@ -7,7 +7,8 @@ export type Project = {
   date: string;
   description: Localized;
   stack: string[];
-  repo: string;
+  /* link do repositório (opcional); sem ele, o botão não aparece */
+  repo?: string;
   /* GIF do projeto rodando, em /public/projects (null → aviso de "em breve") */
   gif: string | null;
   /* miniatura do anel (opcional); sem ela, o próprio GIF roda no anel */
@@ -24,7 +25,6 @@ const projects: Project[] = [
       en: "This website. A Next.js portfolio with projects spinning in a ring, pages in Portuguese and English switched without reloading, and a contact form that sends e-mail through its own API route.",
     },
     stack: ["Next.js", "TypeScript", "React", "CSS", "Resend", "Vercel"],
-    repo: "https://github.com/arturity7/arthur-portifolio",
     gif: null,
   },
 ];
