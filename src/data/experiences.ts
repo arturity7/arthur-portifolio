@@ -34,14 +34,14 @@ const experiences: Experience[] = [
     },
   },
   {
-    org: { pt: "ONG de incentivo à leitura", en: "Reading-access nonprofit" },
+    org: "Instituto Gil Nogueira",
     role: { pt: "Monitor de avaliações", en: "Assessment Monitor" },
     kind: "nonprofit",
     start: "2024",
     end: "2025",
     description: {
-      pt: "Atuei como monitor de avaliações em uma organização sem fins lucrativos dedicada a levar o acesso à leitura a escolas públicas, acompanhando as avaliações aplicadas aos alunos e ajudando o projeto a chegar com qualidade às salas de aula.",
-      en: "I worked as an assessment monitor at a nonprofit dedicated to bringing access to reading to public schools, following the assessments given to students and helping the project reach classrooms with quality.",
+      pt: "Atuei como monitor de avaliações no Instituto Gil Nogueira, organização sem fins lucrativos dedicada a levar o acesso à leitura a escolas públicas, acompanhando as avaliações aplicadas aos alunos e ajudando o projeto a chegar com qualidade às salas de aula.",
+      en: "I worked as an assessment monitor at Instituto Gil Nogueira, a nonprofit dedicated to bringing access to reading to public schools, following the assessments given to students and helping the project reach classrooms with quality.",
     },
   },
   {
