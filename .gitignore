@@ -8,3 +8,6 @@ next-env.d.ts
 .vercel
 .DS_Store
 npm-debug.log*
+
+# GIFs originais dos projetos (o site usa as versões convertidas em public/projects)
+/*.gif

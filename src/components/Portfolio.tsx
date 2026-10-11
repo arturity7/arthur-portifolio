@@ -266,7 +266,7 @@ export default function Portfolio() {
         }}
       />
 
-      <Works projects={PROJECTS} running={ready} onOpen={openProject} />
+      <Works projects={PROJECTS} running={ready} active={ready && view === "works" && !projectOpen} onOpen={openProject} />
 
       <ProjectView
         ref={projectRef}

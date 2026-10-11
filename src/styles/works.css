@@ -43,6 +43,20 @@
   outline: 1px solid rgba(255, 255, 255, 0.05);
   outline-offset: -1px;
 }
+/* demonstração do projeto: escondida até começar a tocar (o pôster fica por baixo) */
+.tile video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.tile video.on {
+  opacity: 1;
+}
 .tile:focus-visible {
   outline: 1px solid var(--white);
   outline-offset: 4px;

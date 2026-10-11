@@ -28,10 +28,12 @@ function buildSlots(projects: Project[]): Slot[] {
 type Props = {
   projects: Project[];
   running: boolean;
+  /* anel visível (fora dele, nenhum vídeo toca) */
+  active: boolean;
   onOpen: (index: number) => void;
 };
 
-export default function Works({ projects, running, onOpen }: Props) {
+export default function Works({ projects, running, active, onOpen }: Props) {
   const { t } = useLang();
   const slots = useMemo(() => buildSlots(projects), [projects]);
   const geo = useMemo(
@@ -53,18 +55,33 @@ export default function Works({ projects, running, onOpen }: Props) {
   hotRef.current = hot;
   const tileRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const vidRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
     setCoarse(matchMedia("(pointer: coarse)").matches);
     /* vazios e projetos ainda sem imagem recebem uma pintura procedural */
     setPaints(
       slots.map((s, i) =>
-        s.project && (s.project.thumb || s.project.gif)
+        s.project?.media
           ? ""
           : paintThumb(i + 7, 320, Math.round(320 / ASPECTS[i % ASPECTS.length])),
       ),
     );
   }, [slots]);
+
+  /* parado por padrão: só o projeto em foco reproduz a demonstração */
+  useEffect(() => {
+    vidRefs.current.forEach((v, i) => {
+      if (!v) return;
+      if (active && hot === i) {
+        v.play().catch(() => {});
+      } else if (!v.paused || v.currentTime > 0) {
+        v.pause();
+        v.currentTime = 0;
+        v.classList.remove("on");
+      }
+    });
+  }, [hot, active]);
 
   /* animação do anel */
   useEffect(() => {
@@ -183,7 +200,8 @@ export default function Works({ projects, running, onOpen }: Props) {
       >
         <div id="ring" className={hot !== null ? "hovered" : ""}>
           {slots.map((s, i) => {
-            const src = s.project?.thumb ?? s.project?.gif ?? paints[i];
+            const media = s.project?.media;
+            const src = media?.poster ?? paints[i];
             return (
             <button
               key={i}
@@ -210,6 +228,20 @@ export default function Works({ projects, running, onOpen }: Props) {
                   src={src}
                   alt=""
                   draggable={false}
+                />
+              )}
+              {media && (
+                <video
+                  ref={(el) => {
+                    vidRefs.current[i] = el;
+                  }}
+                  src={media.preview}
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  aria-hidden="true"
+                  onPlaying={(e) => e.currentTarget.classList.add("on")}
                 />
               )}
             </button>

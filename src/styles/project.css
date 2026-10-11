@@ -75,7 +75,7 @@
   background: #111;
   border: 1px solid rgba(242, 241, 238, 0.08);
 }
-.pv-media img {
+.pv-media video {
   display: block;
   width: 100%;
   max-height: 74vh;
@@ -161,6 +161,12 @@
 .pv-repo:hover {
   background-size: 0 1px;
   background-position: 100% 100%;
+}
+/* repositório privado: só informa, não é link */
+.pv-private {
+  color: #8b8a84;
+  background: none;
+  cursor: default;
 }
 .pv-repo svg {
   font-size: 15px;

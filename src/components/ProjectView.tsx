@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef } from "react";
-import { FaGithub } from "react-icons/fa6";
+import { FaGithub, FaLock } from "react-icons/fa6";
 import type { Project } from "@/data/projects";
 import { useLang } from "@/i18n/LanguageProvider";
 import { pad3 } from "@/lib/visual";
@@ -38,8 +38,18 @@ const ProjectView = forwardRef<HTMLDivElement, Props>(function ProjectView(
 
           <article className="pv" key={p.slug}>
             <figure className="pv-media">
-              {p.gif ? (
-                <img src={p.gif} alt={`${p.title} — demo`} />
+              {p.media ? (
+                <video
+                  key={p.slug}
+                  src={p.media.video}
+                  poster={p.media.poster}
+                  autoPlay={open}
+                  muted
+                  loop
+                  playsInline
+                  preload={open ? "auto" : "none"}
+                  aria-label={`${p.title} — ${t.project.demo}`}
+                />
               ) : (
                 <div className="pv-nogif">
                   <span>{t.project.noGif}</span>
@@ -60,11 +70,18 @@ const ProjectView = forwardRef<HTMLDivElement, Props>(function ProjectView(
                     <li key={s}>{s}</li>
                   ))}
                 </ul>
-                <a className="pv-repo" href={p.repo} target="_blank" rel="noopener noreferrer">
-                  <FaGithub aria-hidden="true" />
-                  <span>{t.project.repo}</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
+                {p.repo ? (
+                  <a className="pv-repo" href={p.repo} target="_blank" rel="noopener noreferrer">
+                    <FaGithub aria-hidden="true" />
+                    <span>{t.project.repo}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                ) : (
+                  <span className="pv-repo pv-private">
+                    <FaLock aria-hidden="true" />
+                    <span>{t.project.repoPrivate}</span>
+                  </span>
+                )}
               </div>
             </div>
           </article>
