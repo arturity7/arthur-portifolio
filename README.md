@@ -3,7 +3,7 @@
 # 🏷️ Portfólio — Arthur Gabriel 👨‍💻
 
 > [!NOTE]
-> Portfólio profissional bilíngue (português/inglês) com os projetos girando num anel no centro da tela. Cada projeto abre com um GIF de demonstração, descrição, tecnologias, link do repositório e uma linha do tempo do mais antigo ao mais recente.
+> Portfólio profissional bilíngue (português/inglês) com os projetos girando num anel no centro da tela. Cada projeto abre com a demonstração do site rodando, descrição, tecnologias, link do repositório e uma linha do tempo do mais antigo ao mais recente.
 
 <table>
   <tr>
@@ -73,8 +73,9 @@ O objetivo é apresentar minha trajetória, habilidades, projetos e formas de co
 
 ## ✨ Funcionalidades Principais
 
-- 🌀 **Anel de projetos:** os projetos giram no centro da tela; hover destaca o projeto e mostra índice, nome e ano. No celular, o 1º toque seleciona e o 2º abre.
-- 🎞️ **Projeto aberto:** GIF do projeto em funcionamento, descrição, tecnologias e link para o repositório no GitHub.
+- 🌀 **Anel de projetos:** os projetos giram no centro da tela, parados; no hover, o projeto em foco cresce, mostra índice, nome e ano e **começa a reproduzir sua demonstração**, enquanto os outros perdem cor. No celular, o 1º toque seleciona (e reproduz) e o 2º abre.
+- 🎞️ **Projeto aberto:** demonstração do projeto em funcionamento (em loop), descrição, tecnologias e link para o repositório no GitHub — ou o aviso de repositório privado, no caso de projetos de clientes.
+- 🏢 **Logos nas experiências:** cada empresa/instituição aparece com sua logo ao lado do nome.
 - 🕰️ **Linha do tempo:** dentro do projeto aberto, todos os projetos aparecem do mais antigo ao mais recente, com navegação por clique, botões ou setas do teclado.
 - 👤 **Sobre mim:** apresentação com formação, área de atuação, interesses e objetivos.
 - 💼 **Experiências:** registro em colunas com período, empresa/instituição, cargo e descrição; item atual marcado.
@@ -238,7 +239,8 @@ npm run lint
 │
 ├── /public
 │   ├── /img                   # 🖼️ Foto do "Sobre mim"
-│   └── /projects              # 🎞️ GIFs dos projetos
+│   ├── /img/logos             # 🏢 Logos das experiências
+│   └── /projects/<slug>       # 🎞️ Demonstração de cada projeto (poster.jpg, ring.mp4, demo.mp4)
 │
 └── /src
     ├── /app
@@ -275,21 +277,33 @@ npm run lint
 
 ## ➕ Como adicionar projetos e experiências
 
-**Projeto:** coloque o GIF em `public/projects/` e adicione um item em `src/data/projects.ts`:
+**Projeto:** grave um GIF do projeto rodando e converta-o com o [ffmpeg](https://ffmpeg.org/). Um GIF não pode ser pausado pelo navegador e pesa muito (os três primeiros somavam ~49 MB); convertido, vira um quadro parado para o anel e dois vídeos leves (~6 MB no total):
+
+```bash
+mkdir -p public/projects/meu-projeto
+# quadro parado mostrado no anel (escolha o segundo com -ss)
+ffmpeg -ss 2 -i meu-projeto.gif -frames:v 1 -vf "scale=960:-2" -q:v 3 public/projects/meu-projeto/poster.jpg
+# vídeo leve que toca no anel durante o hover
+ffmpeg -i meu-projeto.gif -movflags +faststart -pix_fmt yuv420p -c:v libx264 -crf 27 -vf "scale=640:-2" -an public/projects/meu-projeto/ring.mp4
+# vídeo da página do projeto
+ffmpeg -i meu-projeto.gif -movflags +faststart -pix_fmt yuv420p -c:v libx264 -crf 24 -vf "scale=1280:-2" -an public/projects/meu-projeto/demo.mp4
+```
+
+Depois adicione um item em `src/data/projects.ts`:
 
 ```ts
 {
   slug: "meu-projeto",
   title: "Meu Projeto",
-  date: "2025-06",                       // define a posição na linha do tempo
+  date: "2025-06",                                  // define a posição na linha do tempo
   description: { pt: "…", en: "…" },
   stack: ["Java", "Spring Boot"],
-  repo: "https://github.com/arturity7/meu-projeto",
-  gif: "/projects/meu-projeto.gif",
+  repo: "https://github.com/arturity7/meu-projeto", // ou null se o repositório for privado
+  media: mediaOf("meu-projeto"),
 }
 ```
 
-**Experiência:** adicione um item em `src/data/experiences.ts` (`end: null` marca como atual).
+**Experiência:** coloque a logo (quadrada) em `public/img/logos/` e adicione um item em `src/data/experiences.ts` com `logo: "/img/logos/arquivo.png"` (`end: null` marca como atual).
 
 ---
 
