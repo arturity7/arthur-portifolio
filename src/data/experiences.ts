@@ -18,12 +18,15 @@ export type Experience = {
   start: string;
   end: string | null;
   description: Localized;
+  /* logo quadrada em /public/img/logos */
+  logo?: string;
   link?: string;
 };
 
 const experiences: Experience[] = [
   {
     org: "DW LAW",
+    logo: "/img/logos/dw.png",
     role: { pt: "Desenvolvedor RPA", en: "RPA Developer" },
     kind: "job",
     start: "2026-09",
@@ -35,6 +38,7 @@ const experiences: Experience[] = [
   },
   {
     org: "Instituto Gil Nogueira",
+    logo: "/img/logos/gilnogueira.jpg",
     role: { pt: "Monitor de avaliações", en: "Assessment Monitor" },
     kind: "nonprofit",
     start: "2024",
@@ -46,6 +50,7 @@ const experiences: Experience[] = [
   },
   {
     org: "Shigat",
+    logo: "/img/logos/shigat.jpg",
     role: { pt: "Fundador", en: "Founder" },
     kind: "venture",
     start: "2022",

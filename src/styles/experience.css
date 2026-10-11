@@ -51,6 +51,21 @@
   }
 }
 
+/* logo quadrada ao lado do nome, como no LinkedIn */
+.xp-where {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.xp-logo {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
 .xp-where h2 {
   font-family: var(--serif);
   font-weight: 400;
@@ -97,5 +112,9 @@
   }
   .xp-when {
     padding-top: 0;
+  }
+  .xp-logo {
+    width: 48px;
+    height: 48px;
   }
 }

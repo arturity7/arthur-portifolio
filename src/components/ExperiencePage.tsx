@@ -49,8 +49,11 @@ export default function ExperiencePage() {
               {!e.end && <span className="xp-live" aria-hidden="true" />}
             </div>
             <div className="xp-where">
-              <h2>{e.link ? <a href={e.link} target="_blank" rel="noopener noreferrer">{org}</a> : org}</h2>
-              <span className="xp-kind">{x.kinds[e.kind]}</span>
+              {e.logo && <img className="xp-logo" src={e.logo} alt={`Logo ${org}`} width={56} height={56} loading="lazy" />}
+              <div>
+                <h2>{e.link ? <a href={e.link} target="_blank" rel="noopener noreferrer">{org}</a> : org}</h2>
+                <span className="xp-kind">{x.kinds[e.kind]}</span>
+              </div>
             </div>
             <div className="xp-what">
               <p className="xp-role">{tr(e.role)}</p>
