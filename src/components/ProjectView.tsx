@@ -59,7 +59,6 @@ const ProjectView = forwardRef<HTMLDivElement, Props>(function ProjectView(
 
             <div className="pv-body">
               <header className="pv-head">
-                <span className="pv-year">{p.date.slice(0, 4)}</span>
                 <h2 className="pv-title">{p.title}</h2>
               </header>
               <p className="pv-desc">{tr(p.description)}</p>
@@ -107,7 +106,7 @@ const ProjectView = forwardRef<HTMLDivElement, Props>(function ProjectView(
                       aria-current={j === index ? "step" : undefined}
                       onClick={() => onNavigate(j)}
                     >
-                      <span className="y">{q.date.slice(0, 4)}</span>
+                      <span className="y">{pad3(j + 1)}</span>
                       <span className="dot" aria-hidden="true" />
                       <span className="n">{q.title}</span>
                     </button>

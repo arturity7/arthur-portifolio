@@ -3,7 +3,7 @@
 # 🏷️ Portfólio — Arthur Gabriel 👨‍💻
 
 > [!NOTE]
-> Portfólio profissional bilíngue (português/inglês) com os projetos girando num anel no centro da tela. Cada projeto abre com a demonstração do site rodando, descrição, tecnologias, link do repositório e uma linha do tempo do mais antigo ao mais recente.
+> Portfólio profissional bilíngue (português/inglês) com os projetos girando num anel no centro da tela. Cada projeto abre com a demonstração do site rodando, descrição, tecnologias, link do repositório e uma navegação entre todos os projetos.
 
 <table>
   <tr>
@@ -76,7 +76,7 @@ O objetivo é apresentar minha trajetória, habilidades, projetos e formas de co
 - 🌀 **Anel de projetos:** os projetos giram no centro da tela, parados; no hover, o projeto em foco cresce, mostra índice, nome e ano e **começa a reproduzir sua demonstração**, enquanto os outros perdem cor. No celular, o 1º toque seleciona (e reproduz) e o 2º abre.
 - 🎞️ **Projeto aberto:** demonstração do projeto em funcionamento (em loop), descrição, tecnologias e link para o repositório no GitHub — ou o aviso de repositório privado, no caso de projetos de clientes.
 - 🏢 **Logos nas experiências:** cada empresa/instituição aparece com sua logo ao lado do nome.
-- 🕰️ **Linha do tempo:** dentro do projeto aberto, todos os projetos aparecem do mais antigo ao mais recente, com navegação por clique, botões ou setas do teclado.
+- 🧭 **Navegação entre projetos:** dentro do projeto aberto, todos os projetos aparecem numerados, com navegação por clique, botões ou setas do teclado.
 - 👤 **Sobre mim:** apresentação com formação, área de atuação, interesses e objetivos.
 - 💼 **Experiências:** registro em colunas com período, empresa/instituição, cargo e descrição; item atual marcado.
 - ✉️ **Contato:** ícones clicáveis (e-mail, WhatsApp, LinkedIn, GitHub, Instagram) e formulário em forma de carta que **envia e-mail** pela rota `POST /api/contact`.
@@ -131,7 +131,7 @@ Aplicação **monolítica em Next.js**: a mesma base serve a página (pré-rende
 
 - **`Portfolio`** é o orquestrador: guarda a vista atual (projetos, sobre, experiências, contato) e controla as transições. Os estados visuais são classes no elemento raiz (`collapsed`, `stage-hidden`, `project-open`, `view-<página>`…), e o CSS reage a elas.
 - **`Works`** desenha o anel. O movimento roda num `requestAnimationFrame` que escreve direto no DOM, sem re-renderizar o React a cada quadro.
-- **`ProjectView`** mostra o projeto aberto e a linha do tempo.
+- **`ProjectView`** mostra o projeto aberto e a navegação entre projetos.
 - **Páginas** (`AboutPage`, `ExperiencePage`, `ContactPage`) leem os textos do dicionário de idiomas e os dados de `src/data/`.
 - **`LanguageProvider`** (Context API) guarda o idioma e entrega o dicionário certo; trocar o idioma só re-renderiza o texto.
 - **`/api/contact`** valida o corpo com as mesmas regras do front (`src/lib/contact.ts`) e envia o e-mail pelo Resend, com `replyTo` apontando para quem escreveu.
@@ -254,14 +254,14 @@ npm run lint
     │   ├── Header.tsx         # 🧭 Navegação, idioma e menu do celular
     │   ├── Loader.tsx         # ⏳ Tela de entrada
     │   ├── Works.tsx          # 🌀 Anel de projetos + HUD
-    │   ├── ProjectView.tsx    # 🎞️ Projeto aberto + linha do tempo
+    │   ├── ProjectView.tsx    # 🎞️ Projeto aberto + navegação entre projetos
     │   ├── AboutPage.tsx      # 👤 Sobre mim
     │   ├── ExperiencePage.tsx # 💼 Experiências
     │   ├── ContactPage.tsx    # ✉️ Contato (carta + canais)
     │   ├── PageFoot.tsx       # 🦶 Rodapé das páginas
     │   └── Mark.tsx           # ⭕ Marca "a" animada
     ├── /data
-    │   ├── projects.ts        # 📁 Projetos (ordem cronológica)
+    │   ├── projects.ts        # 📁 Projetos (a ordem da lista é a ordem do site)
     │   ├── experiences.ts     # 📁 Experiências
     │   └── profile.ts         # 📇 Links de contato
     ├── /i18n
@@ -295,7 +295,6 @@ Depois adicione um item em `src/data/projects.ts`:
 {
   slug: "meu-projeto",
   title: "Meu Projeto",
-  date: "2025-06",                                  // define a posição na linha do tempo
   description: { pt: "…", en: "…" },
   stack: ["Java", "Spring Boot"],
   repo: "https://github.com/arturity7/meu-projeto", // ou null se o repositório for privado
@@ -346,7 +345,7 @@ Checagem de tipos:
 npm run lint
 ```
 
-Os fluxos (anel, abertura de projeto, linha do tempo, troca de idioma, validação e envio do formulário, versão mobile) foram verificados manualmente em navegador, em desktop (1440×900) e celular (390×844).
+Os fluxos (anel, abertura de projeto, navegação entre projetos, troca de idioma, validação e envio do formulário, versão mobile) foram verificados manualmente em navegador, em desktop (1440×900) e celular (390×844).
 
 ---
 

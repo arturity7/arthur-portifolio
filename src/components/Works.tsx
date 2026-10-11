@@ -254,7 +254,6 @@ export default function Works({ projects, running, active, onOpen }: Props) {
       <div className={`hud${hotSlot ? " show" : ""}`} aria-hidden="true">
         <span className="idx">{hotSlot?.project ? pad3(hotSlot.index + 1) : "—"}</span>
         <span className="title">{hotSlot?.project ? hotSlot.project.title : t.ring.soon}</span>
-        <span className="year">{hotSlot?.project ? hotSlot.project.date.slice(0, 4) : ""}</span>
       </div>
     </>
   );
