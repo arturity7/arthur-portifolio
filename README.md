@@ -1,5 +1,3 @@
----
-
 ## 🏷️ Portfólio — Arthur Gabriel 👨‍💻
 
 > [!NOTE]
