@@ -1,6 +1,6 @@
 ---
 
-# 🏷️ Portfólio — Arthur Gabriel 👨‍💻
+## 🏷️ Portfólio — Arthur Gabriel 👨‍💻
 
 > [!NOTE]
 > Portfólio profissional bilíngue (português/inglês) com os projetos girando num anel no centro da tela. Cada projeto abre com a demonstração do site rodando, descrição, tecnologias, link do repositório e uma navegação entre todos os projetos.
